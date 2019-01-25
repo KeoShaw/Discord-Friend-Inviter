@@ -1,0 +1,5 @@
++siege,Siege
++rs2,Rising Storm 2
++csgo,CS:GO
++pubg,PubG
++example,Commands
