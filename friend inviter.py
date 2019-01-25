@@ -1,6 +1,7 @@
 ###Creator: Keo Tom-Shaw
 ###Date: 25/01/2019
 ###Version: 1.0
+###License: MIT
 ###
 ###This is a Discord bot made for the purpose of easily inviting certain friends to play games
 ###
