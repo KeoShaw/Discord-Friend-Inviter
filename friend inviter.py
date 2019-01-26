@@ -22,7 +22,7 @@ def get_bot_token():
 	finally:
 		bot_file.close()
 		
-	return line
+	return line.replace('\n','')
 
 def populate_games():
 	game_names = {}
