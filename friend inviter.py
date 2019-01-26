@@ -33,7 +33,7 @@ def populate_games():
 		
 		for line in lines:
 			parsed = line.split(',')
-			game_names[ parsed[0] ] = parsed[1]
+			game_names[ parsed[0].replace('\n','') ] = parsed[1].replace('\n','')
 		
 	except(Exception):
 		print("Problem reading commands.txt")
@@ -52,10 +52,10 @@ def populate_friends():
 		for line in read_lines:
 			parsed = line.split(',')
 			games = []
-			for i in range(1,len(parsed)): ############################ bounds check this
-				games.append(parsed[i])
+			for i in range(1,len(parsed)):
+				games.append( parsed[i].replace('\n','') )
 			
-			friend_list[ parsed[0] ] = games
+			friend_list[ parsed[0].replace('\n','') ] = games
 		
 	except(Exception):
 		print("Problem reading friends info")
@@ -71,7 +71,7 @@ def get_owner():
 		read_lines = owner_file.readlines()
 		
 		for line in read_lines:
-			lines.append(line)
+			lines.append( line.replace('\n','') )
 		
 	except(Exception):
 		print("Problem reading owner name")
@@ -90,7 +90,7 @@ def get_server_name():
 	finally:
 		server_file.close()
 		
-	return line
+	return line.replace('\n','')
 	
 async def game_invite(message):
 	for friend in friends:
