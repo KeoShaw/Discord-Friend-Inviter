@@ -11,12 +11,12 @@
 
 5. Populate the other text files. Formats:
   
-  -Friends.txt: [Discord user ID],[List of game commands, e.g. +csgo, +dota,etc.] Each friend is on a new line. Friends receive invites (owners can be on this list)
+      -Friends.txt: [Discord user ID],[List of game commands, e.g. +csgo, +dota,etc.] Each friend is on a new line. Friends receive             invites (owners can be on this list)
   
-  -commands.txt: [command],[full game name] each command is on a new line
+      -commands.txt: [command],[full game name] each command is on a new line
   
-  -owner.txt: [owner ID] Can be multiple owners on new lines. Owners are the only ones able to issue invite commands (+csgo, etc.)
+      -owner.txt: [owner ID] Can be multiple owners on new lines. Owners are the only ones able to issue invite commands (+csgo, etc.)
   
-  -server.txt: [server ID] The ID of the server, can only be one.
+      -server.txt: [server ID] The ID of the server, can only be one.
   
   6. Use python to run friend inviter.py
