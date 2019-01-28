@@ -11,7 +11,7 @@
 
 5. Populate the other text files. Formats:
   
-      -Friends.txt: [Discord user ID],[List of game commands, e.g. +csgo, +dota,etc., each separated by commas] Each friend is on a new         line. Friends receive invites (owners can be on this list)
+      -Friends.txt: [Discord user ID],[List of game commands, e.g. +csgo, +dota,etc., each separated by commas] Each friend is on a new         line. Friends receive invites (owners can be on this list). Friends can have any number of game commands. They will only receive           invites for games listed here, so you can customise which friends play which games.
   
       -commands.txt: [command],[full game name] each command is on a new line
   
