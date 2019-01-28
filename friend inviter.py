@@ -94,7 +94,8 @@ def get_server_name():
 	
 async def game_invite(message):
 	for friend in friends:
-		if message.content in friend_ids[friend.id] and not friend.status == discord.Status.offline:
+		#Only send message if user plays that game, is online, and is not in the same voice channel as the sender (unless they're deafened)
+		if message.content in friend_ids[friend.id] and not friend.status == discord.Status.offline and (friend.voice.voice_channel != message.author.voice.voice_channel or friend.voice.voice_channel == None or friend.voice.self_deaf or friend.voice.deaf):
 			await client.send_message(friend, "Your friends would like to know if you're willing to play %s" % game_list[message.content])
 
 @client.event
