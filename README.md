@@ -1,6 +1,6 @@
 # Discord Friend Inviter
 
-# Installation and Use
+## Installation and Use
 1. Install Python 3.5.4
 
 2. Install the Discord.py API, found at (https://github.com/Rapptz/discord.py). To easily install, use "python -m pip install -U discord.py" from the command line on Windows.
