@@ -4,8 +4,6 @@
 ###License: MIT
 ###
 ###This is a Discord bot made for the purpose of easily inviting certain friends to play games
-###
-###Future features: -Don't notify users in the same call as the inviter
 
 import discord
 import asyncio
@@ -95,11 +93,14 @@ def get_server_name():
 async def game_invite(message):
 	for friend in friends:
 		#Only send message if user plays that game, is online, and is not in the same voice channel as the sender (unless they're deafened)
-		if message.content in friend_ids[friend.id] and not friend.status == discord.Status.offline and (friend.voice.voice_channel != message.author.voice.voice_channel or friend.voice.voice_channel == None or friend.voice.self_deaf or friend.voice.deaf):
-			await client.send_message(friend, "Your friends would like to know if you're willing to play %s" % game_list[message.content])
+		if message.content in friend_ids[friend.id] and not friend.status == discord.Status.offline and friend.id != message.author.id and (
+			friend.voice.voice_channel != message.author.voice.voice_channel or friend.voice.voice_channel == None or friend.voice.self_deaf or friend.voice.deaf):
+			asyncio.ensure_future(client.send_message(friend, "Your friends would like to know if you're willing to play %s" % game_list[message.content]))
+		await asyncio.sleep(0)
 
 @client.event
 async def on_ready():
+	global main_server
 	print('Logged in as')
 	print(client.user.name)
 	print(client.user.id)
@@ -120,13 +121,13 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	key = message.content
-	#potential data race due to async?
+	
 	if key in command_switch and message.author.id in owner_id:
-		await switch[message.content](message)
+		asyncio.ensure_future(switch[message.content](message))
 	if key in game_list and message.author.id in owner_id:
-		await game_invite(message)
+		asyncio.ensure_future(game_invite(message))
 	if message.channel.is_private and not message.author.bot:
-		await client.send_message(owner[0], "%s said: %s" % (message.author.name, message.content))
+		asyncio.ensure_future(client.send_message(owner[0], "%s said: %s" % (message.author.name, message.content)))
 
 game_list = populate_games() #List of commands for games, and their names, in commands.txt
 command_switch = {} #hard-coded commands
