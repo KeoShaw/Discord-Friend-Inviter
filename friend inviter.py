@@ -116,7 +116,25 @@ async def on_ready():
 				friends.append(member)
 			if key in owner_id:
 				owner.append(member)
-	print("list succesfully fetched\n------")
+	print("list successfully fetched\n------")
+
+	if main_server != None:	
+		print("\nServer\n------")
+		print(main_server.name)
+	
+		print("\nOwners\n------")
+		for owners in owner:
+			print(owners.name)
+		
+		print("\nFriends\n------")
+		for friend in friends:
+			print(friend.name)
+			print(friend_ids[friend.id])
+			print("\n")
+		
+		print("\nCommands\n------")
+		for key in game_list:
+			print(key)
 
 @client.event
 async def on_message(message):
@@ -127,7 +145,11 @@ async def on_message(message):
 	if key in game_list and message.author.id in owner_id:
 		asyncio.ensure_future(game_invite(message))
 	if message.channel.is_private and not message.author.bot:
-		asyncio.ensure_future(client.send_message(owner[0], "%s said: %s" % (message.author.name, message.content)))
+		main_owner = None
+		for owners in owner:
+			if owners.id == owner_id[0]:
+				main_owner = owners
+		asyncio.ensure_future(client.send_message(main_owner, "%s said: %s" % (message.author.name, message.content)))
 
 game_list = populate_games() #List of commands for games, and their names, in commands.txt
 command_switch = {} #hard-coded commands
