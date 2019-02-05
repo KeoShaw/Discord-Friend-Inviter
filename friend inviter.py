@@ -129,6 +129,7 @@ async def on_ready():
 		print("\nFriends\n------")
 		for friend in friends:
 			print(friend.name)
+			print(friend.id)
 			print(friend_ids[friend.id])
 			print("\n")
 		
