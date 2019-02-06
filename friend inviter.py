@@ -165,4 +165,5 @@ owner = [] #user objects
 
 bot_token = get_bot_token() #Token for the bot (find on Discord's bot website)
 
-client.run(bot_token)
+if __name__ == "__main__":
+	client.run(bot_token)
